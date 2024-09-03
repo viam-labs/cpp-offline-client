@@ -15,15 +15,8 @@ int main()
     std::string host(getenv_str("VIAM_HOST"));
     Credentials credentials("api-key", getenv_str("VIAM_API_KEY"));
     DialOptions dial_opts;
-    if (credentials.payload().empty())
-    {
-        dial_opts.set_allow_insecure_downgrade(true);
-    }
-    else
-    {
-        dial_opts.set_entity(getenv_str("VIAM_ENTITY_ID"));
-        dial_opts.set_credentials(credentials);
-    }
+    dial_opts.set_entity(getenv_str("VIAM_ENTITY_ID"));
+    dial_opts.set_credentials(credentials);
 
     auto machine = RobotClient::at_address(host, Options(0, dial_opts));
 
