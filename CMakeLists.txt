@@ -5,10 +5,11 @@ add_executable(main
   main.cpp
 )
 
-find_package(PkgConfig)
+find_package(viam-cpp-sdk REQUIRED viamsdk)
 
-pkg_check_modules(viam REQUIRED viam-cpp-sdk-libviamsdk)
+target_link_libraries(main viam-cpp-sdk::viamsdk)
 
-target_link_libraries(main ${viam_LIBRARIES})
-target_include_directories(main PUBLIC ${viam_INCLUDE_DIRS})
-target_compile_options(main PUBLIC ${viam_CFLAGS_OTHER})
+# Uncomment the line below if there are issues with the C++ standard, or if you want to set it
+# explicitly for this project.
+
+# target_compile_features(main cxx_std_17)
